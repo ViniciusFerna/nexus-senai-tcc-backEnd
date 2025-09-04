@@ -34,4 +34,8 @@ public class Veiculo {
 	@JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = false)
 	private pedidoTransporte idPedido;
 	
+	@OneToOne
+	@JoinColumn(name = "viagem_id", referencedColumnName = "id", nullable = false)
+	private Viagem idViagem;
+	
 }
