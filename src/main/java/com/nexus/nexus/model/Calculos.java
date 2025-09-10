@@ -1,7 +1,5 @@
 package com.nexus.nexus.model;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,17 +10,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ocorrencia")
-public class Ocorrencia {
+@Table(name = "Calculos")
 
+public class Calculos {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String tipo;
-	
-	private String descricao;
-	
-	private Date data_hora;
-	
+	private double custoKm;
+	private double distanciaTotal;
+	private double custoTotal;
+
 }
