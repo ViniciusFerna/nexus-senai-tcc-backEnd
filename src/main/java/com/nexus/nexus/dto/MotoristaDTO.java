@@ -1,13 +1,18 @@
 package com.nexus.nexus.dto;
-/* DTO significa 
-(Data Transfer Object) */
+
+
+
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
-import org.hibernate.validator.constraints.br.CPF; // Exemplo de validador específico
+import org.hibernate.validator.constraints.br.CPF;
+
+/* DTO significa 
+(Data Transfer Object) */
+
 
 @Data
 public class MotoristaDTO {
@@ -30,8 +35,8 @@ public class MotoristaDTO {
 
     @NotNull(message = "O custo por KM é obrigatório.")
     @PositiveOrZero(message = "O custo por KM não pode ser negativo.")
-    private float custoKm;
+    private double custoKmMotorista;
 
     // Apenas o ID da entidade relacionada é exposto.
-    private Long veiculoId;
+    private Long idVeiculo;
 }

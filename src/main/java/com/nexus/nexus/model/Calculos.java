@@ -19,12 +19,12 @@ public class Calculos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	@JoinColumn(name = "custoKm", referencedColumnName = "custoKm", nullable = false)
+	@OneToOne(targetEntity = Calculos.class)
+	@JoinColumn(name = "custoKm", referencedColumnName = "custoKmMotorista", nullable = false)
 	private double custoKm;
 	
-	@OneToOne
-	@JoinColumn(name = "distanciaTotal", referencedColumnName = "distanciaTotal", nullable = false)
+	@OneToOne(targetEntity = Calculos.class)
+	@JoinColumn(name = "distanciaTotal", referencedColumnName = "distanciaTotalRota", nullable = false)
 	private double distanciaTotal;
 	
 	private double custoTotal;

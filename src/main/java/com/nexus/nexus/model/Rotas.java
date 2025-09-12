@@ -21,7 +21,7 @@ public class Rotas {
 	
 	private List<String> pontosPassagem;
 	
-	private double distanciaTotal;
+	private double distanciaTotalRota;
 	
 	private double tempoEstimado;
 	

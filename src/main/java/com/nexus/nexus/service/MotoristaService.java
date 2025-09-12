@@ -1,5 +1,7 @@
 package com.nexus.nexus.service;
 
+import com.nexus.nexus.dto.MotoristaDTO;
+
 /* (Camada de Serviço)
 Contém a lógica de negócio. Onde no criar e atualizar, estou colocando para buscar a entidade Veiculo a partir do veiculoId recebido no DTO. 
 */
@@ -43,7 +45,7 @@ public class MotoristaService {
         motoristaExistente.setNomeMotorista(motoristaAtualizado.getNomeMotorista());
         motoristaExistente.setCpf(motoristaAtualizado.getCpf());
         // ... (atualizar outros campos)
-        motoristaExistente.setVeiculo(motoristaAtualizado.getVeiculo());
+        motoristaExistente.setId(motoristaAtualizado.getId());
 
         return motoristaRepository.save(motoristaExistente);
     }
@@ -61,12 +63,12 @@ public class MotoristaService {
         motorista.setCnh(dto.getCnh());
         motorista.setTelefone(dto.getTelefone());
         motorista.setStatus(dto.getStatus());
-        motorista.setCustoKm(dto.getCustoKm());
+        motorista.setCustoKmMotorista(dto.getCustoKmMotorista());
 
-        if (dto.getVeiculoId() != null) {
-            Veiculo veiculo = veiculoRepository.findById(dto.getVeiculoId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Veículo não encontrado com o ID: " + dto.getVeiculoId()));
-            motorista.setVeiculo(veiculo);
+        if (dto.getIdVeiculo() != null) {
+            Veiculo veiculo = veiculoRepository.findById(dto.getIdVeiculo())
+                    .orElseThrow(() -> new ResourceNotFoundException("Veículo não encontrado com o ID: " + dto.getIdVeiculo()));
+            motorista.setIdVeiculo(veiculo);
         }
         
         return motorista;

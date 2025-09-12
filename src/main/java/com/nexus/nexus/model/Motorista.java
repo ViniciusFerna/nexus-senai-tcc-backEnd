@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,9 +28,9 @@ public class Motorista {
 	
 	private String status;
 	
-	private double custoKm;
+	private double custoKmMotorista;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "veiculo_id", referencedColumnName = "id", nullable = false)
 	private Veiculo idVeiculo;
 	

@@ -3,7 +3,9 @@ package com.nexus.nexus.controller;
 import com.nexus.nexus.dto.MotoristaDTO;
 import com.nexus.nexus.model.Motorista;
 import com.nexus.nexus.service.MotoristaService;
+
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,9 +44,9 @@ public class MotoristaController {
         dto.setCnh(motorista.getCnh());
         dto.setTelefone(motorista.getTelefone());
         dto.setStatus(motorista.getStatus());
-        dto.setCustoKm(motorista.getCustoKm());
-        if (motorista.getVeiculo() != null) {
-            dto.setVeiculoId(motorista.getVeiculo().getId());
+        dto.setCustoKmMotorista(motorista.getCustoKmMotorista());
+        if (motorista.getId() != null) {
+            dto.setIdVeiculo(motorista.getId());
         }
         return dto;
     }
