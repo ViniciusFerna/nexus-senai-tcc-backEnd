@@ -1,5 +1,7 @@
 package com.nexus.nexus.model;
 
+import com.nexus.nexus.util.HashUtil;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,4 +35,8 @@ public class Usuario {
 	@JoinColumn(name = "cliente_id", referencedColumnName = "id", nullable = true)
 	private Cliente idCliente;
 	
-}
+	public void setSenha(String senha) {
+		this.senha = HashUtil.hash(senha);
+	}
+	
+}	
