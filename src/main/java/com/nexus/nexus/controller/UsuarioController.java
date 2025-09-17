@@ -58,7 +58,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/registrar")
-	public ResponseEntity<?> createUser(@RequestBody Usuario user) {
+	public ResponseEntity<?> createUser(@Valid @RequestBody Usuario user) {
 		try {
 			
 			if(user.getNome().isEmpty()) {
