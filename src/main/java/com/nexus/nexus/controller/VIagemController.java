@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nexus.nexus.model.Viagem;
 import com.nexus.nexus.repository.ViagemRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/viagem")
 public class VIagemController {
@@ -19,7 +21,7 @@ public class VIagemController {
 	private ViagemRepository viagemRepo;
 	
 	@PostMapping("/")
-	public ResponseEntity<?> criarViagem(@RequestBody Viagem viagem) {
+	public ResponseEntity<?> criarViagem(@Valid @RequestBody Viagem viagem) {
 		try {
 			if(viagem.getDataInicio() == null || viagem.getDataFim() == null) {
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Os campos de data de início e fim devem estar preenchidos");

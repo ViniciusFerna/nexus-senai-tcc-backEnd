@@ -32,7 +32,7 @@ public class Viagem {
 	private Ocorrencia idOcorrencia;
 	
 	@OneToOne
-	@JoinColumn(name = "rotas_id", referencedColumnName = "id", nullable = false)
+	@JoinColumn(name = "rotas_id", referencedColumnName = "id")
 	private Rotas idRotas;
 	
 }
