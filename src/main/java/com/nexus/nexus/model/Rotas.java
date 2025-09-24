@@ -1,5 +1,10 @@
 package com.nexus.nexus.model;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+import jakarta.persistence.ElementCollection; 
+>>>>>>> origin/main
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +17,7 @@ import lombok.Data;
 @Entity
 @Table(name = "Rotas")
 public class Rotas {
+<<<<<<< HEAD
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,3 +32,18 @@ public class Rotas {
 	private int tempoEstimado;
 	
 }
+=======
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @ElementCollection 
+    private List<String> pontosPassagem;
+    
+    private double distanciaTotalRota;
+    
+    private double tempoEstimado;
+    
+}
+>>>>>>> origin/main
