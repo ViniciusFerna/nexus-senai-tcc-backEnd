@@ -76,7 +76,6 @@ public class VeiculoController {
 				v.setModelo(veiculo.getModelo());
 				v.setTipoVeiculo(veiculo.getTipoVeiculo());
 				v.setCapacidadePeso(veiculo.getCapacidadePeso());
-				v.setCapacidadeVolume(veiculo.getCapacidadeVolume());
 
 				repVeiculo.save(v);
 

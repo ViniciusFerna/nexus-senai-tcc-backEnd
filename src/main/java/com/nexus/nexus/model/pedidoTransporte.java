@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -21,16 +22,18 @@ public class pedidoTransporte {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Date dataCriacao;
+	@OneToOne
+	@JoinColumn(name = "veiculo_id", referencedColumnName = "id", nullable = false)
+	private Veiculo veiculo;
+	
+	@ManyToOne
+	@JoinColumn(name = "rota_id", referencedColumnName = "id", nullable = false)
+	private Rotas rota;
+	
+	private Date dataInicio;
+	
+	private Date dataFim;
 	
 	private String status;
-	
-	private String origem;
-	
-	private String destino;
-	
-	@OneToOne
-	@JoinColumn(name = "fatura_id", referencedColumnName = "id", nullable = true)
-	private Fatura idFatura;
 	
 }

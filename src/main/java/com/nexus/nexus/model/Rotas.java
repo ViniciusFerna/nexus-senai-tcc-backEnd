@@ -1,7 +1,5 @@
 package com.nexus.nexus.model;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,10 +17,12 @@ public class Rotas {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private List<String> pontosPassagem;
+	private String origem;
 	
-	private double distanciaTotalRota;
+	private String destino;
 	
-	private double tempoEstimado;
+	private double distancia;
+	
+	private int tempoEstimado;
 	
 }
