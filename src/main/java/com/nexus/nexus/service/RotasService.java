@@ -29,9 +29,10 @@ public class RotasService {
     public Rotas atualizarRota(Long id, Rotas rotaDetails) {
         Rotas rota = rotasRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Rota não encontrada com o id: " + id));
-
-        rota.setPontosPassagem(rotaDetails.getPontosPassagem());
-        rota.setDistanciaTotalRota(rotaDetails.getDistanciaTotalRota());
+        
+        rota.setOrigem(rotaDetails.getOrigem());
+        rota.setDestino(rotaDetails.getDestino());
+        rota.setDistancia(rotaDetails.getDistancia());
         rota.setTempoEstimado(rotaDetails.getTempoEstimado());
 
         return rotasRepository.save(rota);
