@@ -1,7 +1,7 @@
 package com.nexus.nexus.model;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +30,12 @@ public class pedidoTransporte {
 	@JoinColumn(name = "rota_id", referencedColumnName = "id", nullable = false)
 	private Rotas rota;
 	
-	private Date dataInicio;
+	private LocalDate dataInicio;
 	
-	private Date dataFim;
+	private LocalDate dataFim;
 	
 	private String status;
+	
+	private double custoTotal;
 	
 }
