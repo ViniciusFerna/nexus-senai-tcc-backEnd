@@ -42,7 +42,6 @@ public class MotoristaController {
         dto.setCnh(motorista.getCnh());
         dto.setTelefone(motorista.getTelefone());
         dto.setStatus(motorista.getStatus());
-        dto.setCustoKmMotorista(motorista.getCustoKmMotorista());
         if (motorista.getId() != null) {
             dto.setIdVeiculo(motorista.getId());
         }

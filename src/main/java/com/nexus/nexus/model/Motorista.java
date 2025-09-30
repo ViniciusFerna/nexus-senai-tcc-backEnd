@@ -28,8 +28,6 @@ public class Motorista {
 	
 	private String status;
 	
-	private double custoKmMotorista;
-	
 	@ManyToOne
 	@JoinColumn(name = "veiculo_id", referencedColumnName = "id", nullable = false)
 	private Veiculo idVeiculo;

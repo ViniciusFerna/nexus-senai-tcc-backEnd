@@ -9,13 +9,13 @@ import com.nexus.nexus.model.Rotas;
 import com.nexus.nexus.service.RotasService;
 
 @RestController
-@RequestMapping("/api/rotas")
+@RequestMapping("/rotas")
 public class RotasController {
 
     @Autowired
     private RotasService rotasService;
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Rotas> criarRota(@RequestBody Rotas rota) {
         Rotas novaRota = rotasService.criarRota(rota);
         return new ResponseEntity<>(novaRota, HttpStatus.CREATED);
