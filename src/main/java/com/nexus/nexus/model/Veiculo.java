@@ -24,6 +24,8 @@ public class Veiculo {
 	
 	private double capacidadePeso;
 	
+	private double custoPorKm;
+	
 	private String status;
 	
 	

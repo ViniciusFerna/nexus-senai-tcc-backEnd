@@ -63,7 +63,6 @@ public class MotoristaService {
         motorista.setCnh(dto.getCnh());
         motorista.setTelefone(dto.getTelefone());
         motorista.setStatus(dto.getStatus());
-        motorista.setCustoKmMotorista(dto.getCustoKmMotorista());
 
         if (dto.getIdVeiculo() != null) {
             Veiculo veiculo = veiculoRepository.findById(dto.getIdVeiculo())
