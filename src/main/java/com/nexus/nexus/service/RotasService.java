@@ -33,7 +33,7 @@ public class RotasService {
         rota.setOrigem(rotaDetails.getOrigem());
         rota.setDestino(rotaDetails.getDestino());
         rota.setDistancia(rotaDetails.getDistancia());
-        rota.setTempoEstimado(rotaDetails.getTempoEstimado());
+        rota.setTempoEstimadoHoras(rotaDetails.getTempoEstimadoHoras());
 
         return rotasRepository.save(rota);
     }

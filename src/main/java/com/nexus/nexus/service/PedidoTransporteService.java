@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.nexus.nexus.dto.PedidoUpdateDto;
 import com.nexus.nexus.exception.ResourceNotFoundException;
 import com.nexus.nexus.model.Rotas;
 import com.nexus.nexus.model.Veiculo;
@@ -25,7 +27,7 @@ public class PedidoTransporteService {
 	@Autowired
 	private PedidoTransporteRepository pedidoRepo;
 	
-	public pedidoTransporte pedido(Long VeiculoId, Long RotaId, LocalDate dataInicio, LocalDate dataFim) {
+	public pedidoTransporte addPedido(Long VeiculoId, Long RotaId, LocalDate dataInicio, LocalDate dataFim) {
 		Veiculo veiculo = veiculoRepo.findById(VeiculoId)
 				.orElseThrow(() -> new ResourceNotFoundException("Veiculo não encontrado"));
 		Rotas rota = rotaRepo.findById(RotaId)
@@ -49,5 +51,26 @@ public class PedidoTransporteService {
 		return pedidoRepo.save(pedidoTransporte);
 		
 	}
+	
+	public pedidoTransporte updatePedido(Long Id, PedidoUpdateDto pedidoDto) {
+		pedidoTransporte pedido = pedidoRepo.findById(Id)
+				.orElseThrow(() -> new ResourceNotFoundException("Pedido não encontrado"));
+		
+		pedido.setVeiculo(pedidoDto.getVeiculo());
+		pedido.setRota(pedidoDto.getRota());
+		pedido.setDataInicio(pedidoDto.getDataInicio());
+		pedido.setDataFim(pedidoDto.getDataFim());
+		pedido.setStatus(pedidoDto.getStatus());
+		
+		return pedidoRepo.save(pedido);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
