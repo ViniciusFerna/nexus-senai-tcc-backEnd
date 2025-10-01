@@ -66,6 +66,13 @@ public class PedidoTransporteService {
 		
 	}
 	
+	public void deletarPedido(Long id) {
+		if(pedidoRepo.findById(id).isEmpty()) {
+			throw new RuntimeException("Rota não encontrada");
+		}
+		pedidoRepo.deleteById(id);
+	}
+	
 	
 	
 	

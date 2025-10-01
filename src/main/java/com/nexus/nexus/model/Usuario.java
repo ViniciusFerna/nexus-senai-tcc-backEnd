@@ -28,8 +28,6 @@ public class Usuario {
 	@JsonProperty(access = Access.READ_WRITE)
 	private String senha;
 	
-	private boolean isCliente;
-	
 	private String role;
 	
 	public void setSenha(String senha) {
