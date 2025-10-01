@@ -23,7 +23,7 @@ public class Rotas {
 	
 	private double distancia;
 	
-	private int tempoEstimado;
+	private int tempoEstimadoHoras;
 	
 }
  
