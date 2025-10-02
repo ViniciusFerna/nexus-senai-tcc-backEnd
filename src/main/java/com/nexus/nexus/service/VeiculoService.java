@@ -39,6 +39,7 @@ public class VeiculoService {
             veiculo.setModelo(dto.getModelo());
             veiculo.setTipoVeiculo(dto.getTipoVeiculo());
             veiculo.setCapacidadePeso(dto.getCapacidadePeso());
+            veiculo.setCustoPorKm(dto.getCustoPorKm());
             veiculo.setStatus(dto.getStatus());
             Veiculo atualizado = veiculoRepository.save(veiculo);
             return Optional.of(toDto(atualizado));
@@ -61,6 +62,7 @@ public class VeiculoService {
         dto.setModelo(veiculo.getModelo());
         dto.setTipoVeiculo(veiculo.getTipoVeiculo());
         dto.setCapacidadePeso(veiculo.getCapacidadePeso());
+        dto.setCustoPorKm(veiculo.getCustoPorKm());
         dto.setStatus(veiculo.getStatus());
         return dto;
     }
@@ -72,6 +74,7 @@ public class VeiculoService {
         veiculo.setModelo(dto.getModelo());
         veiculo.setTipoVeiculo(dto.getTipoVeiculo());
         veiculo.setCapacidadePeso(dto.getCapacidadePeso());
+        veiculo.setCustoPorKm(dto.getCustoPorKm());
         veiculo.setStatus(dto.getStatus());
         return veiculo;
     }

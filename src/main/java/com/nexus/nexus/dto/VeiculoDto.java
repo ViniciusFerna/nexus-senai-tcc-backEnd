@@ -9,5 +9,6 @@ public class VeiculoDto {
     private String modelo;
     private String tipoVeiculo;
     private double capacidadePeso;
+    private double custoPorKm;
     private String status;
 }

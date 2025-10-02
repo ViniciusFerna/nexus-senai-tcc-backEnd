@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nexus.nexus.dto.PedidoTransporteRequestDTO;
 import com.nexus.nexus.dto.PedidoUpdateDto;
 import com.nexus.nexus.model.pedidoTransporte;
 import com.nexus.nexus.service.PedidoTransporteService;
@@ -24,15 +25,11 @@ public class PedidoTransporteController {
 	private PedidoTransporteService pedidoService;
 	
 	@PostMapping("/")
-	public ResponseEntity<pedidoTransporte> criarPedido(@RequestBody pedidoTransporte pedido) {
-		
-		// Pegando o id e colocando na variável para que possa receber como Long no parâmentro do novoPedido
-		Long veiculoId = pedido.getVeiculo().getId();
-		Long rotasId = pedido.getRota().getId();
+	public ResponseEntity<pedidoTransporte> criarPedido(@RequestBody PedidoTransporteRequestDTO pedido) {
 		
 		pedidoTransporte novoPedido = pedidoService.addPedido(
-				veiculoId,
-				rotasId,
+				pedido.getVeiculoId(),
+				pedido.getRotaId(),
 				pedido.getDataInicio(),
 				pedido.getDataFim());
 		

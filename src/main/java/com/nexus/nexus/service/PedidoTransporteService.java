@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.nexus.nexus.dto.PedidoUpdateDto;
 import com.nexus.nexus.exception.ResourceNotFoundException;
@@ -27,10 +26,10 @@ public class PedidoTransporteService {
 	@Autowired
 	private PedidoTransporteRepository pedidoRepo;
 	
-	public pedidoTransporte addPedido(Long VeiculoId, Long RotaId, LocalDate dataInicio, LocalDate dataFim) {
-		Veiculo veiculo = veiculoRepo.findById(VeiculoId)
+	public pedidoTransporte addPedido(Long veiculoId, Long rotaId, LocalDate dataInicio, LocalDate dataFim) {
+		Veiculo veiculo = veiculoRepo.findById(veiculoId)
 				.orElseThrow(() -> new ResourceNotFoundException("Veiculo não encontrado"));
-		Rotas rota = rotaRepo.findById(RotaId)
+		Rotas rota = rotaRepo.findById(rotaId)
 				.orElseThrow(() -> new ResourceNotFoundException("Rota não encontrada"));
 		
 		Double custoPorKm = veiculo.getCustoPorKm();
