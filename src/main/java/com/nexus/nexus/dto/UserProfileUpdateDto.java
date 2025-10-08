@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class UserProfileUpdateDto {
 
-	private String name;
+	private String nome;
 	
 	private String email;
 	

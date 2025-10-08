@@ -31,6 +31,13 @@ public class VeiculoController {
     public ResponseEntity<List<VeiculoDto>> listarTodas() {
         return ResponseEntity.ok(veiculoService.buscarTodos());
     }
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<VeiculoDto> listaPorId(@PathVariable Long id) {
+		return veiculoService.buscarPorId(id)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
+	}
 
 	@PostMapping
     public ResponseEntity<?> criarVeiculo(@RequestBody VeiculoDto veiculo) {

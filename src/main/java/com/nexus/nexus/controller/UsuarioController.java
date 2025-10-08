@@ -146,7 +146,6 @@ public class UsuarioController {
 	}
 	
 	@PutMapping("/{id}")
-	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @RequestBody @Valid UserProfileUpdateDto userUpdateDto, Authentication authentication) {
 		try {
 			
@@ -160,13 +159,12 @@ public class UsuarioController {
 					.orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
 			
 			
-					user.setNome(userUpdateDto.getName());
+					user.setNome(userUpdateDto.getNome());
 					user.setEmail(userUpdateDto.getEmail());
 			
 			userRepo.save(user);
+			
 			return ResponseEntity.status(HttpStatus.OK).body("Usuário atualizado com sucesso");
-			
-			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro no servidor");
 		}

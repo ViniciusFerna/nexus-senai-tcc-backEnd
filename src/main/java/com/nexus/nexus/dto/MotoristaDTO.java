@@ -1,12 +1,7 @@
 package com.nexus.nexus.dto;
 
-
-
-
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -32,10 +27,6 @@ public class MotoristaDTO {
 
     private String telefone;
     private String status;
-
-    @NotNull(message = "O custo por KM é obrigatório.")
-    @PositiveOrZero(message = "O custo por KM não pode ser negativo.")
-    private double custoKmMotorista;
 
     // Apenas o ID da entidade relacionada é exposto.
     private Long idVeiculo;

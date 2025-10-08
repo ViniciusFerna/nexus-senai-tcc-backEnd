@@ -1,9 +1,14 @@
 package com.nexus.nexus.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,7 +42,7 @@ public class PedidoTransporteController {
 		
 	}
 	
-	@PutMapping("/")
+	@PutMapping("/{id}")
 	public ResponseEntity<pedidoTransporte> atualizarPedido(@PathVariable Long id, @RequestBody PedidoUpdateDto pedido) {
 		try {
 		pedidoTransporte pedidoAtualizado = pedidoService.updatePedido(id, pedido);
@@ -47,6 +52,33 @@ public class PedidoTransporteController {
 		}
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<pedidoTransporte> deletarPedido(@PathVariable Long id) {
+		try {
+			pedidoService.deletarPedido(id);
+			return ResponseEntity.noContent().build();
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<pedidoTransporte>> buscarPedido() {
+		try {
+			return ResponseEntity.ok(pedidoService.getPedidos());
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<pedidoTransporte>> buscarPedidoId(@PathVariable Long id) {
+		try {
+			return ResponseEntity.ok(pedidoService.buscarPedidoId(id));
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
 	
 	
 	
