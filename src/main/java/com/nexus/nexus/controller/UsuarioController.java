@@ -27,16 +27,25 @@ import com.nexus.nexus.exception.ResourceNotFoundException;
 import com.nexus.nexus.model.Usuario;
 import com.nexus.nexus.repository.UsuarioRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+
+//http://localhost:8080/swagger-ui/index.html#/
 
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
+@Tag(name = "Usuários", description = "Endpoints para gerenciamento de usuários")
 public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository userRepo;
 	
+	@Operation(
+		summary = "Faz o login do usuário",
+		description = "Ao fazer o login é gerado o token do usuário que é usado para a maioria dos EndPoints"
+	)
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody loginDto user) {
 		try {
@@ -57,6 +66,10 @@ public class UsuarioController {
 		}
 	}
 	
+	@Operation(
+		summary = "Registra um novo usuário",
+		description = "Permite que o usuário se cadastre usando o nome, email e senha"
+	)
 	@PostMapping("/registrar")
 	public ResponseEntity<?> createUser(@Valid @RequestBody Usuario user) {
 		try {
@@ -84,6 +97,10 @@ public class UsuarioController {
 		}
 	}
 	
+	@Operation(
+		summary = "Retorna os dados de todos os usuários cadastrados no sistema",
+		description = "Retorna o id, nome, email, senha(criptograda) e role de todos os usuários"
+	)
 	@GetMapping("/")
 	public ResponseEntity<?> getUsers() {
 		try {
@@ -101,6 +118,10 @@ public class UsuarioController {
 		}
 	}
 	
+	@Operation(
+		summary = "Retorna os dados do usuário especificado pelo id",
+		description = "Retorna o id, nome, email, senha(criptograda) e role do usuário"
+	)
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getUser(@PathVariable Long id, Authentication authentication) {
 		// O Authentication e um objeto que vai conter os dados do usuario logado no momento por meio do token passado no header
@@ -130,6 +151,10 @@ public class UsuarioController {
 		
 	}
 	
+	@Operation(
+		summary = "Deleta o usuário específicado pelo id",
+		description = "Deleta completamente os dados do usuário especificado pelo id"
+	)
 	@DeleteMapping("/deletarUser")
 	public ResponseEntity<?> deleteUser(Authentication authentication) {
 		try {
@@ -145,6 +170,10 @@ public class UsuarioController {
 		}
 	}
 	
+	@Operation(
+		summary = "Atualiza o perfil do usuário logado",
+		description = "Permite que o usuário modifique seu nome e email. Requer autenticação"
+	)
 	@PutMapping("/{id}")
 	public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @RequestBody @Valid UserProfileUpdateDto userUpdateDto, Authentication authentication) {
 		try {
