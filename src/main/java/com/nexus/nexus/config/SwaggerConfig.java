@@ -13,7 +13,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("API Nexus - Gerenciamento de Transporte") // Seu Título
-                        .version("v1.0.0") // Versão da sua API
+                        .version("v0.6.7") // Versão da sua API
                         .description("Documentação da API para operações de CRUD e Autenticação de Usuários."));
     }
 }

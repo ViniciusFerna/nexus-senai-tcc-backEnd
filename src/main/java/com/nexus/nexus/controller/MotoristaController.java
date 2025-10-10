@@ -24,7 +24,7 @@ public class MotoristaController {
 
     // 1. POST - Criar Novo Motorista
     // O @RequestBody deve receber o DTO, que contém apenas o idVeiculo
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<MotoristaDTO> criar(@RequestBody @Valid MotoristaDTO motoristaDto) { 
         
         // 1. Converte DTO para Entidade (Service busca o Veiculo pelo ID)
