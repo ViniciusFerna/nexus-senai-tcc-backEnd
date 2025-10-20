@@ -31,7 +31,7 @@ public class VeiculoController {
 	@Autowired
 	private VeiculoService veiculoService;
 
-	@GetMapping
+	@GetMapping("/")
 	@Operation(
 			summary = "Retorna os dados de todos os veículos do sistema",
 			description = "Retorna o id, placa, modelo, tipo de veículo, capacidade peso, custo por KM e o status atual"

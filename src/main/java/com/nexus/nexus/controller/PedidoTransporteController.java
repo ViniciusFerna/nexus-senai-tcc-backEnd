@@ -62,7 +62,7 @@ public class PedidoTransporteController {
 		}
 	}
 	
-	@GetMapping
+	@GetMapping("/")
 	public ResponseEntity<List<pedidoTransporte>> buscarPedido() {
 		try {
 			return ResponseEntity.ok(pedidoService.getPedidos());

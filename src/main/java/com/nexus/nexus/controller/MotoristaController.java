@@ -49,7 +49,7 @@ public class MotoristaController {
     }
     
     // 3. GET - Listar Todos os Motoristas
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<MotoristaDTO>> listarTodos() {
         List<MotoristaDTO> motoristasDto = motoristaService.listarTodos().stream()
                 .map(this::convertToDto) // Mapeia cada Entidade para DTO

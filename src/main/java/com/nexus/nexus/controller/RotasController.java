@@ -33,7 +33,7 @@ public class RotasController {
     		summary = "Retorna os dados de todas as rotas do sistema",
     		description = "Retorna o id, origem, destino, distancia e tempo estimado em horas"
     )
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Rotas>> listarTodas() {
         return ResponseEntity.ok(rotasService.listarTodas());
     }
