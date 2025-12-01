@@ -31,15 +31,16 @@ public class PedidoTransporteController {
 	
 	@PostMapping("/")
 	public ResponseEntity<pedidoTransporte> criarPedido(@RequestBody PedidoTransporteRequestDTO pedido) {
-		
-		pedidoTransporte novoPedido = pedidoService.addPedido(
-				pedido.getVeiculoId(),
-				pedido.getRotaId(),
-				pedido.getDataInicio(),
-				pedido.getDataFim());
-		
-		return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
-		
+
+	    pedidoTransporte novoPedido = pedidoService.addPedido(
+	            pedido.getVeiculoId(),
+	            pedido.getRotaId(),
+	            pedido.getCargaId(),
+	            pedido.getDataInicio(),
+	            pedido.getDataFim()
+	    );
+
+	    return new ResponseEntity<>(novoPedido, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")

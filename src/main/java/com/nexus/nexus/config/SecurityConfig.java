@@ -33,12 +33,12 @@ public class SecurityConfig {
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers(HttpMethod.POST, "/user/login", "/user/registrar").permitAll()
 				.requestMatchers(HttpMethod.GET, "/user/**", "/veiculos/**", 
-						"/motoristas/**", "/rotas/**", "/pedido/**").authenticated()
-				.requestMatchers(HttpMethod.POST, "/veiculos/", "/motoristas/", "/rotas/", "/pedido/").authenticated()
+						"/motoristas/**", "/rotas/**", "/pedido/**", "/cargas/**").authenticated()
+				.requestMatchers(HttpMethod.POST, "/veiculos/", "/motoristas/", "/rotas/", "/pedido/", "/cargas/").authenticated()
 				.requestMatchers(HttpMethod.PUT, "/user/{id}", "/veiculos/{id}",
-						"/motoristas/{id}", "/rotas/{id}", "/pedido/{id}").authenticated()
+						"/motoristas/{id}", "/rotas/{id}", "/pedido/{id}", "/cargas/{id}").authenticated()
 				.requestMatchers(HttpMethod.DELETE, "/user/deletarUser", "/veiculos/{id}",
-						"/motoristas/{id}", "/rotas/{id}", "/pedido/{id}").authenticated()
+						"/motoristas/{id}", "/rotas/{id}", "/pedido/{id}", "/cargas/{id}").authenticated()
 			)
 			.addFilterBefore(securityUserFilter, BasicAuthenticationFilter.class);
 		

@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,6 +29,10 @@ public class pedidoTransporte {
 	@ManyToOne
 	@JoinColumn(name = "rota_id", referencedColumnName = "id", nullable = false)
 	private Rotas rota;
+	
+	@OneToOne
+	@JoinColumn(name = "carga_id", referencedColumnName = "id", nullable = false)
+	private Carga carga;
 	
 	private LocalDate dataInicio;
 	

@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.nexus.nexus.dto.PedidoUpdateDto;
 import com.nexus.nexus.exception.ResourceNotFoundException;
+import com.nexus.nexus.model.Carga;
 import com.nexus.nexus.model.Rotas;
 import com.nexus.nexus.model.Veiculo;
 import com.nexus.nexus.model.pedidoTransporte;
+import com.nexus.nexus.repository.CargaRepository;
 import com.nexus.nexus.repository.PedidoTransporteRepository;
 import com.nexus.nexus.repository.RotasRepository;
 import com.nexus.nexus.repository.VeiculoRepository;
@@ -28,30 +30,43 @@ public class PedidoTransporteService {
 	@Autowired
 	private PedidoTransporteRepository pedidoRepo;
 	
-	public pedidoTransporte addPedido(Long veiculoId, Long rotaId, LocalDate dataInicio, LocalDate dataFim) {
+	@Autowired
+	private CargaRepository cargaRepo;
+	
+	public pedidoTransporte addPedido(Long veiculoId, Long rotaId, Long cargaId,
+            LocalDate dataInicio, LocalDate dataFim) {
+
 		Veiculo veiculo = veiculoRepo.findById(veiculoId)
-				.orElseThrow(() -> new ResourceNotFoundException("Veiculo não encontrado"));
+		.orElseThrow(() -> new ResourceNotFoundException("Veiculo não encontrado"));
+		
 		Rotas rota = rotaRepo.findById(rotaId)
-				.orElseThrow(() -> new ResourceNotFoundException("Rota não encontrada"));
+		.orElseThrow(() -> new ResourceNotFoundException("Rota não encontrada"));
 		
-		Double custoPorKm = veiculo.getCustoPorKm();
-		Double distancia = rota.getDistancia();
-		Double calculoCustoTotal = custoPorKm * distancia;
+		Carga carga = cargaRepo.findById(cargaId)
+		.orElseThrow(() -> new ResourceNotFoundException("Carga não encontrada"));
 		
-		pedidoTransporte pedidoTransporte = new pedidoTransporte();
-		pedidoTransporte.setVeiculo(veiculo);
-		pedidoTransporte.setRota(rota);
-		pedidoTransporte.setDataInicio(dataInicio);
-		pedidoTransporte.setDataFim(dataFim);
-		pedidoTransporte.setStatus("PLANEJADA");
-		pedidoTransporte.setCustoTotal(calculoCustoTotal);
+		// evitar usar mesma carga para dois pedidos
+		if (carga.getPedido() != null) {
+		throw new RuntimeException("Essa carga já está vinculada a outro pedido!");
+		}
+		
+		double custoTotal = veiculo.getCustoPorKm() * rota.getDistancia();
+		
+		pedidoTransporte pedido = new pedidoTransporte();
+		pedido.setVeiculo(veiculo);
+		pedido.setRota(rota);
+		pedido.setCarga(carga);
+		pedido.setDataInicio(dataInicio);
+		pedido.setDataFim(dataFim);
+		pedido.setStatus("PLANEJADA");
+		pedido.setCustoTotal(custoTotal);
 		
 		veiculo.setStatus("EM USO");
 		veiculoRepo.save(veiculo);
 		
-		return pedidoRepo.save(pedidoTransporte);
-		
-	}
+		return pedidoRepo.save(pedido);
+}
+
 	
 	public pedidoTransporte updatePedido(Long Id, PedidoUpdateDto pedidoDto) {
 		pedidoTransporte pedido = pedidoRepo.findById(Id)
