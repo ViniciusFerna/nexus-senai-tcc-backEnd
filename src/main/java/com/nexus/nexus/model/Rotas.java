@@ -25,5 +25,7 @@ public class Rotas {
 	
 	private int tempoEstimadoHoras;
 	
+	private Double valorPedagios;
+	
 }
  
