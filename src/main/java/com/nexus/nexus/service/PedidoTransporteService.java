@@ -83,10 +83,18 @@ public class PedidoTransporteService {
 	}
 	
 	public void deletarPedido(Long id) {
-		if(pedidoRepo.findById(id).isEmpty()) {
-			throw new RuntimeException("Rota não encontrada");
-		}
-		pedidoRepo.deleteById(id);
+		pedidoTransporte pedido = pedidoRepo.findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Pedido não encontrado"));
+
+	    // 🔥 Quebra a relação antes
+	    Carga carga = pedido.getCarga();
+	    if (carga != null) {
+	        carga.setPedido(null); // remove o vínculo
+	        cargaRepo.save(carga); // salva a carga sem pedido
+	    }
+
+	    // Agora pode deletar o pedido sem erro
+	    pedidoRepo.delete(pedido);
 	}
 	
 	public List<pedidoTransporte> getPedidos() {

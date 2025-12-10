@@ -1,5 +1,7 @@
 package com.nexus.nexus.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Carga {
 	private String descricao;
 
 	@OneToOne(mappedBy = "carga")
+	@JsonIgnore
 	private pedidoTransporte pedido;
 
 }
